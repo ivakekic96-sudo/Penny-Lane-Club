@@ -4,207 +4,349 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Penny Lane Club</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+/* --- Global --- */
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #f6f3ef;
-  color: #2b2b2b;
-  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  scroll-behavior: smooth;
 }
+h1,h2,h3 { margin: 0; }
+p { margin: 0.5em 0; }
+section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+
+/* --- Header & Meni --- */
 header {
-  min-height: 80vh;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('images/hero-placeholder.jpg') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 40px 20px;
-  background: #e8dfd3;
+  color: #fff;
 }
-header h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 400; }
-header h2 { font-size: 1.2rem; font-weight: 300; }
-
-section { max-width: 1000px; margin: 80px auto; padding: 0 20px; }
-.intro { font-size: 1.2rem; text-align: center; margin-bottom: 60px; }
-h2.section-title { text-align: center; margin-bottom: 40px; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+header::before {
+  content: '';
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.3);
 }
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+nav .logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+nav ul li a:hover { color: #2b7a78; }
+nav .cart {
+  cursor: pointer;
+  font-weight: 600;
+  color: #222;
+  position: relative;
+}
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #2b7a78;
+  color: #fff;
+  font-size: 12px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Hero Text --- */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: -50px;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* --- Intro Section --- */
+.intro {
+  background: #dce6da;
+  color: #2b2b2b;
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 1.5rem;
+  line-height: 2;
+  animation: fadeIn 2s ease forwards;
+}
+
+/* --- Shop Section --- */
+.shop-section { padding-bottom: 100px; }
+.shop-section h2 { text-align: center; margin-bottom: 40px; }
+.shop-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  scroll-behavior: smooth;
+}
+.shop-grid::-webkit-scrollbar { display: none; }
 .card {
+  min-width: 250px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 20px;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
-.card img { max-width: 100%; border-radius: 6px; }
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
 .card button {
   margin-top: 10px;
-  padding: 10px 20px;
-  background: #2b2b2b;
+  padding: 10px 15px;
+  background: #2b7a78;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.2s;
+  transition: background 0.3s;
 }
-.card button:hover { background: #444; }
+.card button:hover { background: #3aa79b; }
 
-#cart {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  max-width: 320px;
-  z-index: 1000;
+/* --- Cart / Checkout --- */
+#cart-section {
+  padding: 80px 20px;
+  text-align: center;
 }
-#cart h3 { margin-top: 0; }
-#cart ul { list-style: none; padding-left: 0; }
-#cart li { margin-bottom: 8px; }
-#checkoutForm { display: none; margin-top: 20px; }
-#checkoutForm input { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+#cart-section h2 { margin-bottom: 30px; }
+#cartItems { list-style: none; padding-left: 0; margin-bottom: 20px; }
+#cartItems li { margin-bottom: 10px; font-weight: 500; }
+#checkoutForm input {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 300px;
+  max-width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 #checkoutForm button {
-  background: #2b2b2b; color: #fff; padding: 10px; border: none; cursor: pointer; width: 100%;
-  transition: background 0.2s;
+  padding: 10px 20px;
+  background: #2b7a78;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-#checkoutForm button:hover { background: #444; }
+#checkoutForm button:hover { background: #3aa79b; }
+#confirmation {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+  font-size: 1.2rem;
+}
 
-#confirmation { display: none; color: green; font-weight: bold; text-align: center; margin-top: 20px; }
-#confirmation::before { content:"✔ "; font-size: 1.2rem; }
+/* --- O nama --- */
+.about {
+  text-align: center;
+  padding: 80px 20px;
+}
+.about p { margin: 20px 0; font-size: 1.2rem; }
 
-footer { background: #e8dfd3; text-align: center; padding: 60px 20px; margin-top: 80px; border-top: 1px solid #ccc; }
-iframe { width: 100%; height: 300px; border: 0; margin-bottom: 20px; border-radius: 6px; }
+/* --- Gallery --- */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+.gallery img { width: 250px; border-radius: 10px; transition: transform 0.3s; }
+.gallery img:hover { transform: scale(1.05); }
 
-@media (max-width: 600px) {
-  header h1 { font-size: 2rem; }
-  header h2 { font-size: 1rem; }
-  #cart { width: 90%; top: 10px; right: 5%; }
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: #2b7a78;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Responsive --- */
+@media(max-width: 768px) {
+  nav ul { gap: 20px; }
+  .hero-text { font-size: 2rem; }
+  .shop-grid { flex-direction: column; align-items: center; }
 }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Penny Lane Club</h1>
-  <h2>A place for everyday rituals.<br>Coffee. Streets. Conversations.</h2>
+<!-- --- Nav --- -->
+<nav>
+  <div class="logo"><img src="images/logo.png" alt="Logo"></div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#about">O nama</a></li>
+  </ul>
+  <div class="cart" onclick="scrollToCart()">Korpa <span class="cart-count" id="cart-count">0</span></div>
+</nav>
+
+<!-- --- Hero --- -->
+<header id="home">
+  <div class="hero-text">PENNY LANE CLUB</div>
 </header>
 
+<!-- --- Intro --- -->
 <section class="intro">
-  Penny Lane Club je mali svet za one koji uživaju u svakodnevnim ritualima.
-  U prvoj kafi dana. U šetnji bez plana.
-  U razgovorima koji traju duže nego što je planirano.
+  Uživaj u svakodnevnim ritualima.<br>
+  Budi pozitivan.<br>
+  Inspiracija dolazi od naših ljudi.
 </section>
 
-<section id="shop">
-  <h2 class="section-title">Shop</h2>
-
-  <h3>Ženski</h3>
-  <div class="grid">
+<!-- --- Shop --- -->
+<section id="shop" class="shop-section">
+  <h2>Shop</h2>
+  <div class="shop-grid">
     <div class="card">
-      <img src="images/Drama zenski.jpg" alt="Drama ženski">
+      <img src="images/Drama zenski.jpg" alt="Drama zenski">
       <p>Drama ženski - 1.400 RSD</p>
       <button onclick="addToCart('Drama ženski')">Dodaj u korpu</button>
     </div>
     <div class="card">
-      <img src="images/Limunada zenski.jpg" alt="Limunada ženski">
+      <img src="images/Limunada zenski.jpg" alt="Limunada zenski">
       <p>Limunada ženski - 1.400 RSD</p>
       <button onclick="addToCart('Limunada ženski')">Dodaj u korpu</button>
     </div>
     <div class="card">
-      <img src="images/Grozda zenski.jpg" alt="Grozda ženski">
+      <img src="images/Grozda zenski.jpg" alt="Grozda zenski">
       <p>Grozda ženski - 1.400 RSD</p>
       <button onclick="addToCart('Grozda ženski')">Dodaj u korpu</button>
     </div>
     <div class="card">
-      <img src="images/Espreso zenski.jpg" alt="Espreso ženski">
+      <img src="images/Espreso zenski.jpg" alt="Espreso zenski">
       <p>Espreso ženski - 1.400 RSD</p>
       <button onclick="addToCart('Espreso ženski')">Dodaj u korpu</button>
     </div>
-  </div>
-
-  <h3>Muški</h3>
-  <div class="grid">
     <div class="card">
-      <img src="images/Drama muski.jpg" alt="Drama muški">
+      <img src="images/Drama muski.jpg" alt="Drama muski">
       <p>Drama muški - 1.400 RSD</p>
       <button onclick="addToCart('Drama muški')">Dodaj u korpu</button>
     </div>
     <div class="card">
-      <img src="images/Lutkica muski.jpg" alt="Lutkica muški">
+      <img src="images/Lutkica muski.jpg" alt="Lutkica muski">
       <p>Lutkica muški - 1.400 RSD</p>
       <button onclick="addToCart('Lutkica muški')">Dodaj u korpu</button>
     </div>
   </div>
 </section>
 
-<div id="cart">
-  <h3>Korpa</h3>
+<!-- --- Korpa / Checkout --- -->
+<section id="cart-section">
+  <h2>Korpa</h2>
   <ul id="cartItems"></ul>
-  <button onclick="showCheckout()">Naplata</button>
-
   <form id="checkoutForm" onsubmit="return submitOrder()">
     <input type="text" id="firstName" placeholder="Ime" required>
     <input type="text" id="lastName" placeholder="Prezime" required>
     <input type="text" id="contact" placeholder="E-mail ili telefon" required>
-    <button type="submit">Pošalji porudžbinu</button>
+    <button type="submit">Pošaljite porudžbinu</button>
   </form>
   <div id="confirmation">Porudžbina primljena, kontaktiraćemo vas!</div>
-</div>
-
-<section>
-  <h2 class="section-title">Prodajna mesta</h2>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.414800118865!2d20.386132!3d45.897462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b060ea1d9182d%3A0x2ef3f3b0bfc6b9f3!2sPenny%20Lane%20Club%2C%20Be%C4%8Dej!5e0!3m2!1sen!2srs!4v1696921200000!5m2!1sen!2srs"
-    allowfullscreen="" loading="lazy"></iframe>
-  <p>Penny Lane Club Bečej, Zelena 23, 21220 Bečej</p>
-  <p>District 8, Dunavska 7, 21000 Novi Sad</p>
-  <p>Kontakt: 064 648 94 90</p>
 </section>
+
+<!-- --- O nama --- -->
+<section id="about" class="about">
+  <h2>O nama</h2>
+  <p>Kafić postoji od 1996.</p>
+  <p>Naši stalni gosti i obožavaoci Penny Lane Cluba inspirisali su nas da napravimo brend koji će krasiti svakodnevne trenutke sa stilom.</p>
+  <div class="gallery">
+    <img src="images/enterijer1.jpg" alt="Enterijer">
+    <img src="images/enterijer2.jpg" alt="Enterijer">
+    <img src="images/enterijer3.jpg" alt="Enterijer">
+  </div>
+</section>
+
+<!-- --- Footer --- -->
+<footer>
+  Penny Lane Club 1996
+</footer>
 
 <script>
 let cart = [];
-function addToCart(product) {
+function addToCart(product){
   cart.push(product);
+  document.getElementById('cart-count').textContent = cart.length;
   updateCart();
 }
-function updateCart() {
+function updateCart(){
   const cartItems = document.getElementById('cartItems');
-  cartItems.innerHTML = '';
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item + " - 1.400 RSD";
+  cartItems.innerHTML='';
+  cart.forEach(item=>{
+    const li=document.createElement('li');
+    li.textContent=item+' - 1.400 RSD';
     cartItems.appendChild(li);
   });
 }
-function showCheckout() {
-  document.getElementById('checkoutForm').style.display = 'block';
-}
-function submitOrder() {
-  const firstName = document.getElementById('firstName').value;
-  const lastName = document.getElementById('lastName').value;
-  const contact = document.getElementById('contact').value;
-
-  if(firstName && lastName && contact) {
-    document.getElementById('checkoutForm').style.display = 'none';
-    document.getElementById('confirmation').style.display = 'block';
-    cart = [];
+function submitOrder(){
+  const firstName=document.getElementById('firstName').value;
+  const lastName=document.getElementById('lastName').value;
+  const contact=document.getElementById('contact').value;
+  if(firstName && lastName && contact){
+    document.getElementById('checkoutForm').style.display='none';
+    document.getElementById('confirmation').style.display='block';
+    cart=[];
+    document.getElementById('cart-count').textContent='0';
     updateCart();
   }
   return false;
+}
+function scrollToCart(){
+  document.getElementById('cart-section').scrollIntoView({behavior:'smooth'});
 }
 </script>
 
