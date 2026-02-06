@@ -1,70 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Penny Lane Club</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f6f3ef;
-      color: #2b2b2b;
-      line-height: 1.6;
-    }
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px;
-    }
-    h1 {
-      font-size: 3rem;
-      font-weight: 400;
-      margin-bottom: 10px;
-    }
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-    }
-    section {
-      max-width: 900px;
-      margin: 120px auto;
-      padding: 0 20px;
-    }
-    .intro {
-      font-size: 1.2rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 4px;
-    }
-    footer {
-      text-align: center;
-      padding: 80px 20px;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penny Lane Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f6f3ef;
+  color: #2b2b2b;
+  line-height: 1.6;
+}
+header {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: #e8dfd3;
+}
+header h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 400; }
+header h2 { font-size: 1.2rem; font-weight: 300; }
 
+section { max-width: 1000px; margin: 80px auto; padding: 0 20px; }
+.intro { font-size: 1.2rem; text-align: center; margin-bottom: 60px; }
+h2.section-title { text-align: center; margin-bottom: 40px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+.card img { max-width: 100%; border-radius: 6px; }
+.card button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #2b2b2b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.card button:hover { background: #444; }
+
+#cart {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  max-width: 320px;
+  z-index: 1000;
+}
+#cart h3 { margin-top: 0; }
+#cart ul { list-style: none; padding-left: 0; }
+#cart li { margin-bottom: 8px; }
+#checkoutForm { display: none; margin-top: 20px; }
+#checkoutForm input { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+#checkoutForm button {
+  background: #2b2b2b; color: #fff; padding: 10px; border: none; cursor: pointer; width: 100%;
+  transition: background 0.2s;
+}
+#checkoutForm button:hover { background: #444; }
+
+#confirmation { display: none; color: green; font-weight: bold; text-align: center; margin-top: 20px; }
+#confirmation::before { content:"✔ "; font-size: 1.2rem; }
+
+footer { background: #e8dfd3; text-align: center; padding: 60px 20px; margin-top: 80px; border-top: 1px solid #ccc; }
+iframe { width: 100%; height: 300px; border: 0; margin-bottom: 20px; border-radius: 6px; }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 2rem; }
+  header h2 { font-size: 1rem; }
+  #cart { width: 90%; top: 10px; right: 5%; }
+}
+</style>
+</head>
 <body>
 
 <header>
-  <div>
-    <h1>Penny Lane Club</h1>
-    <h2>A place for everyday rituals.<br>Coffee. Streets. Conversations.</h2>
-  </div>
+  <h1>Penny Lane Club</h1>
+  <h2>A place for everyday rituals.<br>Coffee. Streets. Conversations.</h2>
 </header>
 
 <section class="intro">
@@ -73,26 +109,104 @@
   U razgovorima koji traju duže nego što je planirano.
 </section>
 
-<section>
-  <h2>The Club Essentials</h2>
+<section id="shop">
+  <h2 class="section-title">Shop</h2>
+
+  <h3>Ženski</h3>
   <div class="grid">
-    <div class="card">Minimal design.<br>Made for everyday wear.</div>
-    <div class="card">Soft cotton.<br>Designed to feel familiar.</div>
-    <div class="card">Quiet confidence.<br>No rush, no noise.</div>
+    <div class="card">
+      <img src="images/Drama zenski.jpg" alt="Drama ženski">
+      <p>Drama ženski - 1.400 RSD</p>
+      <button onclick="addToCart('Drama ženski')">Dodaj u korpu</button>
+    </div>
+    <div class="card">
+      <img src="images/Limunada zenski.jpg" alt="Limunada ženski">
+      <p>Limunada ženski - 1.400 RSD</p>
+      <button onclick="addToCart('Limunada ženski')">Dodaj u korpu</button>
+    </div>
+    <div class="card">
+      <img src="images/Grozda zenski.jpg" alt="Grozda ženski">
+      <p>Grozda ženski - 1.400 RSD</p>
+      <button onclick="addToCart('Grozda ženski')">Dodaj u korpu</button>
+    </div>
+    <div class="card">
+      <img src="images/Espreso zenski.jpg" alt="Espreso ženski">
+      <p>Espreso ženski - 1.400 RSD</p>
+      <button onclick="addToCart('Espreso ženski')">Dodaj u korpu</button>
+    </div>
+  </div>
+
+  <h3>Muški</h3>
+  <div class="grid">
+    <div class="card">
+      <img src="images/Drama muski.jpg" alt="Drama muški">
+      <p>Drama muški - 1.400 RSD</p>
+      <button onclick="addToCart('Drama muški')">Dodaj u korpu</button>
+    </div>
+    <div class="card">
+      <img src="images/Lutkica muski.jpg" alt="Lutkica muški">
+      <p>Lutkica muški - 1.400 RSD</p>
+      <button onclick="addToCart('Lutkica muški')">Dodaj u korpu</button>
+    </div>
   </div>
 </section>
 
+<div id="cart">
+  <h3>Korpa</h3>
+  <ul id="cartItems"></ul>
+  <button onclick="showCheckout()">Naplata</button>
+
+  <form id="checkoutForm" onsubmit="return submitOrder()">
+    <input type="text" id="firstName" placeholder="Ime" required>
+    <input type="text" id="lastName" placeholder="Prezime" required>
+    <input type="text" id="contact" placeholder="E-mail ili telefon" required>
+    <button type="submit">Pošalji porudžbinu</button>
+  </form>
+  <div id="confirmation">Porudžbina primljena, kontaktiraćemo vas!</div>
+</div>
+
 <section>
-  <h2>About the Club</h2>
-  Penny Lane Club nije trend.
-  To je mesto između jutarnje kafe i večernje šetnje.
-  Napravljen za one koji cene jednostavnost i mir.
+  <h2 class="section-title">Prodajna mesta</h2>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.414800118865!2d20.386132!3d45.897462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b060ea1d9182d%3A0x2ef3f3b0bfc6b9f3!2sPenny%20Lane%20Club%2C%20Be%C4%8Dej!5e0!3m2!1sen!2srs!4v1696921200000!5m2!1sen!2srs"
+    allowfullscreen="" loading="lazy"></iframe>
+  <p>Penny Lane Club Bečej, Zelena 23, 21220 Bečej</p>
+  <p>District 8, Dunavska 7, 21000 Novi Sad</p>
+  <p>Kontakt: 064 648 94 90</p>
 </section>
 
-<footer>
-  Join the Club<br>
-  hello@pennylaneclub.com
-</footer>
+<script>
+let cart = [];
+function addToCart(product) {
+  cart.push(product);
+  updateCart();
+}
+function updateCart() {
+  const cartItems = document.getElementById('cartItems');
+  cartItems.innerHTML = '';
+  cart.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item + " - 1.400 RSD";
+    cartItems.appendChild(li);
+  });
+}
+function showCheckout() {
+  document.getElementById('checkoutForm').style.display = 'block';
+}
+function submitOrder() {
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const contact = document.getElementById('contact').value;
+
+  if(firstName && lastName && contact) {
+    document.getElementById('checkoutForm').style.display = 'none';
+    document.getElementById('confirmation').style.display = 'block';
+    cart = [];
+    updateCart();
+  }
+  return false;
+}
+</script>
 
 </body>
 </html>
