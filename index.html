@@ -6,50 +6,121 @@
 <title>Penny Lane Club</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;background:#f6f1ea;color:#2a2a2a;scroll-behavior:smooth;}
-header{position:fixed;top:0;width:100%;z-index:1000;display:flex;align-items:center;padding:15px 60px;background:white;box-shadow:0 5px 20px rgba(0,0,0,.05);}
-header img{height:50px;margin-right:30px;}
-nav a{margin-left:30px;text-decoration:none;color:#2a2a2a;font-size:14px;letter-spacing:1px;}
-nav a:hover{color:#8b6f47;transition:0.3s;}
-.hero{height:92vh;background:url('https://i.imgur.com/0HckBcg.jpeg') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;}
-.hero h1{font-family:'Playfair Display',serif;font-size:70px;letter-spacing:4px;margin-bottom:10px;}
-.hero p{font-size:24px;margin:0;}
-.section{padding:100px 60px;max-width:1200px;margin:auto;text-align:center;}
-.section h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:40px;}
-.about p{font-size:20px;line-height:1.8;max-width:700px;margin:auto;margin-bottom:10px;}
-footer{text-align:center;padding:40px;background:#eee;font-size:14px;margin-top:50px;}
-.locations{text-align:center;margin-top:50px;font-size:18px;line-height:2;}
-.locations b{display:block;margin-bottom:5px;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f5f1eb;color:#1a1a1a;scroll-behavior:smooth}
+header{position:fixed;width:100%;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:white;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+header img{height:45px}
+nav a{margin-left:25px;text-decoration:none;color:#1a1a1a;font-size:14px;letter-spacing:1px}
+.cart-btn{cursor:pointer;font-weight:400}
+.hero{height:92vh;background:url('images/hero.jpeg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:white;position:relative;}
+.hero h1{font-family:'Playfair Display',serif;font-size:70px;letter-spacing:4px;}
+.hero p{margin-top:20px;font-size:20px;}
+.section{padding:120px 80px;max-width:1400px;margin:auto;}
+.section h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:60px;text-align:center;}
+.about p{font-size:20px;line-height:1.8;max-width:700px;margin:auto;text-align:center;}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:50px;}
+.product{background:white;border-radius:20px;overflow:hidden;transition:.4s}
+.product img{width:100%;height:400px;object-fit:cover;transition:.5s}
+.product:hover img{transform:scale(1.05)}
+.product-info{padding:25px}
+.product-info h3{margin-bottom:10px;font-size:20px}
+.price{font-weight:600;margin-bottom:10px}
+.selectors{display:flex;gap:10px;margin:10px 0}
+select,input[type="number"]{padding:8px;border-radius:8px;border:1px solid #ddd}
+button{padding:12px 20px;background:#1a1a1a;color:white;border:none;border-radius:30px;cursor:pointer;transition:.3s}
+button:hover{background:#8b6f47}
+.cart-panel{position:fixed;top:0;right:-420px;width:420px;height:100%;background:white;box-shadow:-10px 0 30px rgba(0,0,0,.1);padding:40px;transition:.4s;z-index:2000;overflow:auto}
+.cart-panel.active{right:0}
+.cart-item{margin-bottom:15px;font-size:14px}
+.total{margin-top:20px;font-weight:600;font-size:18px}
+.checkout-form{margin-top:30px;display:flex;flex-direction:column;gap:15px}
+.checkout-form input{padding:12px;border-radius:8px;border:1px solid #ddd}
+.instagram{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px}
+.instagram img{width:100%;height:200px;object-fit:cover;border-radius:15px}
+footer{text-align:center;padding:40px;background:#eee;font-size:14px}
+.map-container{height:400px;margin:50px 0;}
+.location-text{text-align:center;margin-top:20px;font-size:18px;}
+.location-text b{display:block;margin-bottom:10px;font-weight:700;}
 </style>
 </head>
 <body>
-
 <header>
 <img src="images/logo.png" alt="Logo">
 <nav>
 <a href="index.html">HOME</a>
 <a href="shop.html">SHOP</a>
 <a href="onama.html">O NAMA</a>
+<span class="cart-btn" onclick="toggleCart()">KORPA (<span id="cart-count">0</span>)</span>
 </nav>
 </header>
 
 <section class="hero">
+<div>
 <h1>PENNY LANE CLUB</h1>
-<p>since 1996</p>
+<p>since<br>1996</p>
+</div>
 </section>
 
-<section class="section about" id="about">
-<h2>O nama</h2>
+<section class="section about">
+<h2>O NAMA</h2>
 <p>Penny Lane Club je mali svet za one koji uživaju u svakodnevnim ritualima.</p>
 <p>U prvoj kafi dana.</p>
 <p>U šetnji bez plana.</p>
 <p>U razgovorima koji se ne završavaju na vreme.</p>
 <p>Ovo nije samo odeća.</p>
 <p>Ovo je deo tog ritma.</p>
-<p>Naši stalni gosti i obožavaoci Penny Lane Cluba inspirisali su nas da napravimo brend koji će krasiti svaki trenutak života.</p>
 </section>
 
-<section class="section map-container">
-<h2>Gde nas pronaći</h2>
-<div id="m
+<section class="section instagram">
+<h2>Galerija Enterijera</h2>
+<img src="images/enterijer1.png">
+<img src="images/enterijer2.png">
+<img src="images/enterijer3.png">
+<img src="images/enterijer4.png">
+</section>
+
+<div class="map-container" id="map"></div>
+<div class="location-text">
+<b>Penny Lane Club</b>
+Zelena 23, 21220 Bečej
+<b>District 8</b>
+Dunavska 7, 21000 Novi Sad
+</div>
+
+<div class="cart-panel" id="cart">
+<h2>Korpa</h2>
+<div id="cart-items"></div>
+<div class="total">Ukupno: <span id="total">0</span> RSD</div>
+<form class="checkout-form" action="https://formsubmit.co/ivakekci96@gmail.com" method="POST">
+<input type="text" name="ime" placeholder="Ime i prezime" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="text" name="adresa" placeholder="Adresa" required>
+<input type="hidden" name="_captcha" value="false">
+<button type="submit">Pošaljite porudžbinu</button>
+</form>
+</div>
+
+<footer>© 1996 Penny Lane Club</footer>
+
+<script>
+let cart=[]; let total=0;
+function addToCart(name,price,sizeId,qtyId){
+let size=document.getElementById(sizeId).value;
+let qty=parseInt(document.getElementById(qtyId).value);
+cart.push({name,price,size,qty});
+total+=price*qty;
+document.getElementById("cart-count").innerText=cart.length;
+document.getElementById("total").innerText=total;
+document.getElementById("cart-items").innerHTML+=`<div class="cart-item">${name} (${size}) x${qty} - ${price*qty} RSD</div>`;
+}
+function toggleCart(){document.getElementById("cart").classList.toggle("active");}
+
+function initMap(){
+var map = new google.maps.Map(document.getElementById("map"), {zoom:12,center:{lat:45.323, lng:20.187}});
+var marker1 = new google.maps.Marker({position:{lat:45.323,lng:20.187},map:map,title:"Penny Lane Club"});
+var marker2 = new google.maps.Marker({position:{lat:45.251,lng:19.836},map:map,title:"District 8"});
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AQ.Ab8RN6JiW4AI3t3JW0u_6zx29oUKwptwE8ntXHIXtpmKqN6zWQ&callback=initMap" async defer></script>
+</body>
+</html>
