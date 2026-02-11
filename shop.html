@@ -4,18 +4,192 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop - Penny Lane Club</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:#f6f1ea;
+color:#2a2a2a;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 60px;
+background:white;
+}
+
+nav a{
+margin-left:30px;
+text-decoration:none;
+color:#2a2a2a;
+font-size:14px;
+}
+
+.section-title{
+font-family:'Playfair Display';
+font-size:34px;
+margin:70px 60px 20px;
+}
+
+.shop{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:40px;
+padding:0 60px 40px;
+}
+
+.product{
+background:white;
+border-radius:20px;
+padding:20px;
+transition:0.3s;
+}
+
+.product img{
+width:100%;
+height:340px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.product h3{
+font-weight:500;
+margin:15px 0 5px;
+}
+
+.price{
+font-size:14px;
+margin-bottom:10px;
+}
+
+select{
+padding:8px;
+border-radius:8px;
+border:1px solid #ddd;
+margin-bottom:10px;
+}
+
+button{
+padding:10px 20px;
+background:#2a2a2a;
+color:white;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+
+button:hover{
+background:#8b6f47;
+}
+
+.cart{
+position:fixed;
+right:40px;
+top:140px;
+width:300px;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+font-size:14px;
+}
+
+.cart h2{
+font-weight:500;
+margin-bottom:15px;
+}
+
+.cart-item{
+margin-bottom:12px;
+}
+
+.remove{
+font-size:12px;
+color:#999;
+cursor:pointer;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-<a href="index.html">HOME</a> |
-<a href="shop.html">SHOP</a> |
+<img src="https://i.imgur.com/iujexZy.png" style="height:45px;">
+<nav>
+<a href="index.html">HOME</a>
+<a href="shop.html">SHOP</a>
 <a href="onama.html">O NAMA</a>
+</nav>
 </header>
 
-<h1>Shop</h1>
-<p>Ovde ide shop.</p>
+<h2 class="section-title">Ženski modeli</h2>
+
+<section class="shop">
+
+<div class="product">
+<img src="https://i.imgur.com/BChrORq.png">
+<h3>BChrORq</h3>
+<div class="price">1.400 RSD</div>
+<select id="size1">
+<option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+</select>
+<button onclick="addToCart('BChrORq','size1')">Dodaj</button>
+</div>
+
+</section>
+
+<h2 class="section-title">Muški modeli</h2>
+
+<section class="shop">
+
+<div class="product">
+<img src="https://i.imgur.com/654mt4P.png">
+<h3>654mt4P</h3>
+<div class="price">1.400 RSD</div>
+<select id="size2">
+<option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+</select>
+<button onclick="addToCart('654mt4P','size2')">Dodaj</button>
+</div>
+
+</section>
+
+<div class="cart">
+<h2>Korpa</h2>
+<div id="cart-items"></div>
+</div>
+
+<script>
+let cart=[];
+
+function addToCart(name,sizeId){
+let size=document.getElementById(sizeId).value;
+cart.push({name,size});
+renderCart();
+}
+
+function removeItem(index){
+cart.splice(index,1);
+renderCart();
+}
+
+function renderCart(){
+let container=document.getElementById("cart-items");
+container.innerHTML="";
+cart.forEach((item,index)=>{
+container.innerHTML+=`
+<div class="cart-item">
+${item.name} (${item.size})
+<div class="remove" onclick="removeItem(${index})">Ukloni</div>
+</div>`;
+});
+}
+</script>
 
 </body>
 </html>
