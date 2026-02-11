@@ -4,350 +4,206 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Penny Lane Club</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-/* --- Global --- */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #f5f5f5;
-  color: #222;
-  scroll-behavior: smooth;
-}
-h1,h2,h3 { margin: 0; }
-p { margin: 0.5em 0; }
-section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f5f1eb;color:#1a1a1a;scroll-behavior:smooth}
 
-/* --- Header & Meni --- */
-header {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url('images/hero-placeholder.jpg') center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
+header{
+position:fixed;width:100%;top:0;z-index:1000;
+display:flex;justify-content:space-between;align-items:center;
+padding:25px 60px;transition:.3s
 }
-header::before {
-  content: '';
-  position: absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.3);
+header.scrolled{background:white;box-shadow:0 5px 20px rgba(0,0,0,.05)}
+
+header img{height:35px}
+nav a{margin-left:30px;text-decoration:none;color:#1a1a1a;font-size:14px;letter-spacing:1px}
+.cart-btn{cursor:pointer;font-weight:600}
+
+.hero{
+height:100vh;
+background:url('https://i.imgur.com/0HckBcg.jpeg') center/cover no-repeat;
+display:flex;align-items:center;justify-content:center;text-align:center;color:white
 }
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
-nav .logo img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 40px;
-  margin: 0;
-  padding: 0;
-}
-nav ul li a {
-  text-decoration: none;
-  color: #222;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-nav ul li a:hover { color: #2b7a78; }
-nav .cart {
-  cursor: pointer;
-  font-weight: 600;
-  color: #222;
-  position: relative;
-}
-.cart-count {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: #2b7a78;
-  color: #fff;
-  font-size: 12px;
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hero h1{font-family:'Playfair Display',serif;font-size:70px;letter-spacing:4px}
+
+.section{padding:120px 80px;max-width:1400px;margin:auto}
+.section h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:60px}
+
+.about p{font-size:20px;line-height:1.8;max-width:700px}
+
+.shop-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:50px
 }
 
-/* --- Hero Text --- */
-.hero-text {
-  position: relative;
-  z-index: 2;
-  font-size: 3rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-top: -50px;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  animation: fadeIn 1.5s ease forwards;
+.product{
+background:white;border-radius:20px;overflow:hidden;
+transition:.4s
+}
+.product img{
+width:100%;height:500px;object-fit:cover;transition:.5s
+}
+.product:hover img{transform:scale(1.05)}
+
+.product-info{padding:25px}
+.product-info h3{margin-bottom:10px;font-size:20px}
+.price{font-weight:600;margin-bottom:10px}
+
+.selectors{display:flex;gap:10px;margin:10px 0}
+select,input[type="number"]{
+padding:8px;border-radius:8px;border:1px solid #ddd
 }
 
-/* --- Intro Section --- */
-.intro {
-  background: #dce6da;
-  color: #2b2b2b;
-  text-align: center;
-  padding: 80px 20px;
-  font-size: 1.5rem;
-  line-height: 2;
-  animation: fadeIn 2s ease forwards;
+button{
+padding:12px 20px;background:#1a1a1a;color:white;
+border:none;border-radius:30px;cursor:pointer;transition:.3s
+}
+button:hover{background:#8b6f47}
+
+.cart-panel{
+position:fixed;top:0;right:-420px;width:420px;height:100%;
+background:white;box-shadow:-10px 0 30px rgba(0,0,0,.1);
+padding:40px;transition:.4s;z-index:2000;overflow:auto
+}
+.cart-panel.active{right:0}
+
+.cart-item{margin-bottom:15px;font-size:14px}
+.total{margin-top:20px;font-weight:600;font-size:18px}
+
+.checkout-form{
+margin-top:30px;display:flex;flex-direction:column;gap:15px
+}
+.checkout-form input{
+padding:12px;border-radius:8px;border:1px solid #ddd
 }
 
-/* --- Shop Section --- */
-.shop-section { padding-bottom: 100px; }
-.shop-section h2 { text-align: center; margin-bottom: 40px; }
-.shop-grid {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding-bottom: 20px;
-  scroll-behavior: smooth;
+.instagram{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px
 }
-.shop-grid::-webkit-scrollbar { display: none; }
-.card {
-  min-width: 250px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-.card img {
-  width: 100%;
-  border-radius: 8px;
-}
-.card button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #2b7a78;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.card button:hover { background: #3aa79b; }
+.instagram img{width:100%;height:200px;object-fit:cover;border-radius:15px}
 
-/* --- Cart / Checkout --- */
-#cart-section {
-  padding: 80px 20px;
-  text-align: center;
+.newsletter{
+background:#1a1a1a;color:white;padding:80px;text-align:center
 }
-#cart-section h2 { margin-bottom: 30px; }
-#cartItems { list-style: none; padding-left: 0; margin-bottom: 20px; }
-#cartItems li { margin-bottom: 10px; font-weight: 500; }
-#checkoutForm input {
-  padding: 10px;
-  margin-bottom: 15px;
-  width: 300px;
-  max-width: 90%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-#checkoutForm button {
-  padding: 10px 20px;
-  background: #2b7a78;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#checkoutForm button:hover { background: #3aa79b; }
-#confirmation {
-  margin-top: 20px;
-  font-weight: bold;
-  color: green;
-  font-size: 1.2rem;
+.newsletter input{
+padding:12px;border:none;border-radius:30px;width:250px;margin-right:10px
 }
 
-/* --- O nama --- */
-.about {
-  text-align: center;
-  padding: 80px 20px;
-}
-.about p { margin: 20px 0; font-size: 1.2rem; }
-
-/* --- Gallery --- */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 40px;
-}
-.gallery img { width: 250px; border-radius: 10px; transition: transform 0.3s; }
-.gallery img:hover { transform: scale(1.05); }
-
-/* --- Footer --- */
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  background: #2b7a78;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-/* --- Animations --- */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-/* --- Responsive --- */
-@media(max-width: 768px) {
-  nav ul { gap: 20px; }
-  .hero-text { font-size: 2rem; }
-  .shop-grid { flex-direction: column; align-items: center; }
-}
+footer{text-align:center;padding:40px;font-size:14px;background:#eee}
 </style>
 </head>
+
 <body>
 
-<!-- --- Nav --- -->
+<header id="header">
+<img src="https://i.imgur.com/iujexZy.png">
 <nav>
-  <div class="logo"><img src="images/logo.png" alt="Logo"></div>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#shop">Shop</a></li>
-    <li><a href="#about">O nama</a></li>
-  </ul>
-  <div class="cart" onclick="scrollToCart()">Korpa <span class="cart-count" id="cart-count">0</span></div>
+<a href="#about">O NAMA</a>
+<a href="#shop">SHOP</a>
+<span class="cart-btn" onclick="toggleCart()">KORPA (<span id="cart-count">0</span>)</span>
 </nav>
-
-<!-- --- Hero --- -->
-<header id="home">
-  <div class="hero-text">PENNY LANE CLUB</div>
 </header>
 
-<!-- --- Intro --- -->
-<section class="intro">
-  Uživaj u svakodnevnim ritualima.<br>
-  Budi pozitivan.<br>
-  Inspiracija dolazi od naših ljudi.
+<section class="hero">
+<h1>Penny Lane Club</h1>
 </section>
 
-<!-- --- Shop --- -->
-<section id="shop" class="shop-section">
-  <h2>Shop</h2>
-  <div class="shop-grid">
-    <div class="card">
-      <img src="images/Drama zenski.jpg" alt="Drama zenski">
-      <p>Drama ženski - 1.400 RSD</p>
-      <button onclick="addToCart('Drama ženski')">Dodaj u korpu</button>
-    </div>
-    <div class="card">
-      <img src="images/Limunada zenski.jpg" alt="Limunada zenski">
-      <p>Limunada ženski - 1.400 RSD</p>
-      <button onclick="addToCart('Limunada ženski')">Dodaj u korpu</button>
-    </div>
-    <div class="card">
-      <img src="images/Grozda zenski.jpg" alt="Grozda zenski">
-      <p>Grozda ženski - 1.400 RSD</p>
-      <button onclick="addToCart('Grozda ženski')">Dodaj u korpu</button>
-    </div>
-    <div class="card">
-      <img src="images/Espreso zenski.jpg" alt="Espreso zenski">
-      <p>Espreso ženski - 1.400 RSD</p>
-      <button onclick="addToCart('Espreso ženski')">Dodaj u korpu</button>
-    </div>
-    <div class="card">
-      <img src="images/Drama muski.jpg" alt="Drama muski">
-      <p>Drama muški - 1.400 RSD</p>
-      <button onclick="addToCart('Drama muški')">Dodaj u korpu</button>
-    </div>
-    <div class="card">
-      <img src="images/Lutkica muski.jpg" alt="Lutkica muski">
-      <p>Lutkica muški - 1.400 RSD</p>
-      <button onclick="addToCart('Lutkica muški')">Dodaj u korpu</button>
-    </div>
-  </div>
+<section id="about" class="section about">
+<h2>O nama</h2>
+<p>
+Penny Lane Club je mali svet za one koji uživaju u svakodnevnim ritualima.
+U prvoj kafi dana. U šetnji bez plana.
+U razgovorima koji se ne završavaju na vreme.
+Ovo nije samo odeća. Ovo je deo tog ritma.
+</p>
 </section>
 
-<!-- --- Korpa / Checkout --- -->
-<section id="cart-section">
-  <h2>Korpa</h2>
-  <ul id="cartItems"></ul>
-  <form id="checkoutForm" onsubmit="return submitOrder()">
-    <input type="text" id="firstName" placeholder="Ime" required>
-    <input type="text" id="lastName" placeholder="Prezime" required>
-    <input type="text" id="contact" placeholder="E-mail ili telefon" required>
-    <button type="submit">Pošaljite porudžbinu</button>
-  </form>
-  <div id="confirmation">Porudžbina primljena, kontaktiraćemo vas!</div>
+<section id="shop" class="section">
+<h2>Shop</h2>
+<div class="shop-grid">
+
+<div class="product">
+<img src="https://i.imgur.com/BChrORq.png">
+<div class="product-info">
+<h3>Penny Lane Classic</h3>
+<div class="price">3.490 RSD</div>
+<div class="selectors">
+<select id="size1">
+<option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+</select>
+<input type="number" id="qty1" value="1" min="1">
+</div>
+<button onclick="addToCart('Penny Lane Classic',3490,'size1','qty1')">Dodaj u korpu</button>
+</div>
+</div>
+
+</div>
 </section>
 
-<!-- --- O nama --- -->
-<section id="about" class="about">
-  <h2>O nama</h2>
-  <p>Kafić postoji od 1996.</p>
-  <p>Naši stalni gosti i obožavaoci Penny Lane Cluba inspirisali su nas da napravimo brend koji će krasiti svakodnevne trenutke sa stilom.</p>
-  <div class="gallery">
-    <img src="images/enterijer1.jpg" alt="Enterijer">
-    <img src="images/enterijer2.jpg" alt="Enterijer">
-    <img src="images/enterijer3.jpg" alt="Enterijer">
-  </div>
+<section class="section">
+<h2>Instagram</h2>
+<div class="instagram">
+<img src="https://i.imgur.com/654mt4P.png">
+<img src="https://i.imgur.com/Z4Cgzmf.png">
+<img src="https://i.imgur.com/VIuqCaO.jpeg">
+<img src="https://i.imgur.com/L8LPSP3.jpeg">
+</div>
 </section>
 
-<!-- --- Footer --- -->
+<section class="newsletter">
+<h2>Prijavi se na newsletter</h2>
+<br>
+<input type="email" placeholder="Tvoj email">
+<button>Prijavi se</button>
+</section>
+
+<div class="cart-panel" id="cart">
+<h2>Korpa</h2>
+<div id="cart-items"></div>
+<div class="total">Ukupno: <span id="total">0</span> RSD</div>
+
+<form class="checkout-form" action="https://formsubmit.co/ivakekci96@gmail.com" method="POST">
+<input type="text" name="ime" placeholder="Ime i prezime" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="text" name="adresa" placeholder="Adresa" required>
+<input type="hidden" name="_captcha" value="false">
+<button type="submit">Završi porudžbinu</button>
+</form>
+</div>
+
 <footer>
-  Penny Lane Club 1996
+© 2026 Penny Lane Club
 </footer>
 
 <script>
-let cart = [];
-function addToCart(product){
-  cart.push(product);
-  document.getElementById('cart-count').textContent = cart.length;
-  updateCart();
+let cart=[];
+let total=0;
+
+function addToCart(name,price,sizeId,qtyId){
+let size=document.getElementById(sizeId).value;
+let qty=parseInt(document.getElementById(qtyId).value);
+
+cart.push({name,price,size,qty});
+total+=price*qty;
+
+document.getElementById("cart-count").innerText=cart.length;
+document.getElementById("total").innerText=total;
+
+document.getElementById("cart-items").innerHTML+=
+`<div class="cart-item">${name} (${size}) x${qty} - ${price*qty} RSD</div>`;
 }
-function updateCart(){
-  const cartItems = document.getElementById('cartItems');
-  cartItems.innerHTML='';
-  cart.forEach(item=>{
-    const li=document.createElement('li');
-    li.textContent=item+' - 1.400 RSD';
-    cartItems.appendChild(li);
-  });
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active");
 }
-function submitOrder(){
-  const firstName=document.getElementById('firstName').value;
-  const lastName=document.getElementById('lastName').value;
-  const contact=document.getElementById('contact').value;
-  if(firstName && lastName && contact){
-    document.getElementById('checkoutForm').style.display='none';
-    document.getElementById('confirmation').style.display='block';
-    cart=[];
-    document.getElementById('cart-count').textContent='0';
-    updateCart();
-  }
-  return false;
-}
-function scrollToCart(){
-  document.getElementById('cart-section').scrollIntoView({behavior:'smooth'});
-}
+
+window.addEventListener("scroll",function(){
+document.getElementById("header").classList.toggle("scrolled",window.scrollY>50);
+});
 </script>
 
 </body>
