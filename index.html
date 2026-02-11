@@ -8,16 +8,22 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Inter',sans-serif;background:#f6f1ea;color:#2a2a2a;scroll-behavior:smooth;}
-header{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:25px 60px;background:white;box-shadow:0 5px 20px rgba(0,0,0,.05);}
-header img{height:45px;}
+header{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:flex-start;align-items:center;padding:20px 60px;background:white;box-shadow:0 5px 20px rgba(0,0,0,.05);}
+header img{height:50px;margin-right:30px;}
 nav a{margin-left:30px;text-decoration:none;color:#2a2a2a;font-size:14px;letter-spacing:1px;}
-.hero{position:relative;height:92vh;background:url('https://i.imgur.com/0HckBcg.jpeg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
+.hero{position:relative;height:90vh;background:url('https://i.imgur.com/0HckBcg.jpeg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
 .hero h1{font-family:'Playfair Display',serif;font-size:64px;letter-spacing:3px;text-shadow:2px 2px 10px rgba(0,0,0,0.5);}
-.section{padding:120px 60px;max-width:1400px;margin:auto;}
-.section h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:60px;}
+.hero p{margin:0;text-shadow:1px 1px 5px rgba(0,0,0,0.5);}
+.hero .since{font-family:'Inter',sans-serif;font-size:20px;letter-spacing:2px;margin-top:10px;}
+.hero .year{font-family:'Playfair Display',serif;font-size:32px;margin-top:-5px;}
+.section{padding:120px 60px;max-width:1200px;margin:auto;}
+.section h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:40px;text-align:center;}
 .about p{font-size:20px;line-height:1.8;max-width:700px;margin:auto;text-align:center;}
-footer{text-align:center;padding:40px;background:#eee;font-size:14px;}
 .map-container{margin-top:40px;height:400px;}
+.map-text{margin-top:20px;text-align:center;font-size:18px;line-height:2;}
+.map-text strong{display:block;font-weight:700;margin-bottom:5px;}
+footer{text-align:center;padding:40px;background:#eee;font-size:14px;}
+footer img{height:50px;margin-bottom:10px;}
 </style>
 </head>
 <body>
@@ -25,14 +31,18 @@ footer{text-align:center;padding:40px;background:#eee;font-size:14px;}
 <header>
 <img src="https://i.imgur.com/iujexZy.png" alt="Penny Lane Club">
 <nav>
-  <a href="#hero">HOME</a>
+  <a href="index.html">HOME</a>
   <a href="shop.html">SHOP</a>
-  <a href="#about">O NAMA</a>
+  <a href="onama.html">O NAMA</a>
 </nav>
 </header>
 
-<section id="hero" class="hero">
-  <h1>PENNY LANE CLUB</h1>
+<section class="hero">
+  <div style="text-align:center;">
+    <h1>PENNY LANE CLUB</h1>
+    <p class="since">since</p>
+    <p class="year">1996</p>
+  </div>
 </section>
 
 <section id="about" class="section about">
@@ -43,6 +53,9 @@ U prvoj kafi dana. U šetnji bez plana.<br>
 U razgovorima koji se ne završavaju na vreme.<br>
 Ovo nije samo odeća. Ovo je deo tog ritma.
 </p>
+<p>
+Naši stalni gosti i obožavaoci Penny Lane Cluba inspirisali su nas da napravimo brend koji krasi svakodnevni stil modernih ljudi.
+</p>
 </section>
 
 <section class="section">
@@ -50,11 +63,18 @@ Ovo nije samo odeća. Ovo je deo tog ritma.
 <div class="map-container">
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11382.060093537885!2d20.033231!3d45.622118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b7572fce0bfb3%3A0x45cb0d2e626fb5b2!2sPenny%20Lane%20Club%2C%20Be%C4%8Dej!5e0!3m2!1sen!2srs!4v1670000000000!5m2!1sen!2srs" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </div>
-<p style="text-align:center;"><strong>Penny Lane Club Bečej</strong> – Zelena 23, 21220 Bečej</p>
-<p style="text-align:center;"><strong>District 8</strong> – Dunavska 7, 21000 Novi Sad</p>
+<div class="map-text">
+  <strong>Penny Lane Club</strong>
+  Zelena 23, 21220 Bečej<br><br>
+  <strong>District 8</strong>
+  Dunavska 7, 21000 Novi Sad
+</div>
 </section>
 
-<footer>© 1996 Penny Lane Club</footer>
+<footer>
+<img src="https://i.imgur.com/iujexZy.png" alt="Logo"><br>
+© 1996 Penny Lane Club
+</footer>
 
 </body>
 </html>
