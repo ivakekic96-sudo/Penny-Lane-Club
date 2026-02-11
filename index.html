@@ -11,19 +11,18 @@ body{font-family:'Inter',sans-serif;background:#f6f1ea;color:#2a2a2a;scroll-beha
 header{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:flex-start;align-items:center;padding:20px 60px;background:white;box-shadow:0 5px 20px rgba(0,0,0,.05);}
 header img{height:50px;margin-right:30px;}
 nav a{margin-left:30px;text-decoration:none;color:#2a2a2a;font-size:14px;letter-spacing:1px;}
-.hero{height:92vh;background:url('https://i.imgur.com/0HckBcg.jpeg') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;}
+.hero{height:92vh;background:url('https://i.imgur.com/0HckBcg.jpeg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:white;position:relative;}
 .hero h1{font-family:'Playfair Display',serif;font-size:70px;letter-spacing:4px;}
-.hero span{font-size:24px;margin-top:10px;}
+.hero .since{font-size:20px;margin-top:10px;}
 .section{padding:120px 60px;max-width:1200px;margin:auto;text-align:center;}
-.about p{font-size:20px;line-height:1.8;margin-bottom:20px;}
+h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:40px;}
 .shop-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
-.shop-preview img{width:100%;height:300px;object-fit:cover;border-radius:15px;transition:.3s;}
-.shop-preview img:hover{transform:scale(1.05);}
-.footer-locations{margin-top:60px;font-size:18px;text-align:center;}
-.footer-locations strong{display:block;font-weight:600;margin-bottom:5px;}
-#map{width:100%;height:300px;margin-top:20px;}
+.product-preview img{width:100%;height:300px;object-fit:cover;border-radius:15px;}
+.store-locations{margin-top:60px;text-align:center;}
+.store-locations p{margin:15px 0;font-size:18px;}
+.store-locations strong{font-weight:600;}
+#map{height:300px;width:100%;margin-top:20px;}
 footer{text-align:center;padding:40px;background:#eee;font-size:14px;}
-footer img{height:50px;margin-bottom:10px;}
 </style>
 </head>
 <body>
@@ -31,60 +30,55 @@ footer img{height:50px;margin-bottom:10px;}
 <header>
 <img src="https://i.imgur.com/iujexZy.png" alt="Logo">
 <nav>
-  <a href="index.html">HOME</a>
-  <a href="shop.html">SHOP</a>
-  <a href="onama.html">O NAMA</a>
+<a href="index.html">HOME</a>
+<a href="shop.html">SHOP</a>
+<a href="onama.html">O NAMA</a>
 </nav>
 </header>
 
 <section class="hero">
+<div>
 <h1>PENNY LANE CLUB</h1>
-<span>since</span>
-<span>1996</span>
+<div class="since">since</div>
+<div class="since">1996</div>
+</div>
 </section>
 
-<section class="section about">
-<h2>O nama</h2>
-<p>Penny Lane Club je mali svet za one koji uživaju u svakodnevnim ritualima.</p>
-<p>U prvoj kafi dana.</p>
-<p>U šetnji bez plana.</p>
-<p>U razgovorima koji se ne završavaju na vreme.</p>
-<p>Ovo nije samo odeća.</p>
-<p>Ovo je deo tog ritma.</p>
-</section>
-
-<section class="section shop-preview">
+<section class="section">
 <h2>Shop Preview</h2>
-<img src="https://i.imgur.com/BChrORq.png" alt="Drama Zenski">
-<img src="https://i.imgur.com/limunada-zenski.png" alt="Limunada Zenski">
-<img src="https://i.imgur.com/grozda-zenski.png" alt="Grozda Zenski">
-<img src="https://i.imgur.com/espreso-zenski.png" alt="Espreso Zenski">
-<img src="https://i.imgur.com/Drama-muski.png" alt="Drama Muski">
-<img src="https://i.imgur.com/lutkica-muski.png" alt="Lutkica Muski">
+<div class="shop-preview">
+<div class="product-preview"><img src="https://i.imgur.com/BChrORq.png" alt="Drama Zenski"></div>
+<div class="product-preview"><img src="https://i.imgur.com/VIuqCaO.jpeg" alt="Limunada Zenski"></div>
+<div class="product-preview"><img src="https://i.imgur.com/L8LPSP3.jpeg" alt="Grozda Zenski"></div>
+<div class="product-preview"><img src="https://i.imgur.com/PKZxEag.jpeg" alt="Espreso Zenski"></div>
+</div>
 </section>
 
-<section class="footer-locations">
+<section class="section store-locations">
+<h2>Prodajna mesta</h2>
 <div id="map"></div>
-<div><strong>Penny Lane Club</strong>Zelena 23, 21220 Bečej</div>
-<div style="margin-top:20px;"><strong>District 8</strong>Dunavska 7, 21000 Novi Sad</div>
+<p><strong>Penny Lane Club</strong><br>Zelena 23, 21220 Bečej</p>
+<p><strong>District 8</strong><br>Dunavska 7, 21000 Novi Sad</p>
 </section>
 
-<footer>
-<img src="https://i.imgur.com/iujexZy.png" alt="Logo"><br>
-© 1996 Penny Lane Club
-</footer>
+<footer>© 1996 Penny Lane Club</footer>
 
+<!-- Google Maps JS (unesi svoj API key) -->
 <script>
-function initMap(){
+function initMap() {
+  const becej = {lat:45.6167,lng:20.2167};
+  const noviSad = {lat:45.2517,lng:19.8369};
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 13,
-    center: {lat:45.345, lng:20.111}, // sredina između Bečej i Novi Sad
+    zoom:11,
+    center: becej
   });
-  const marker1 = new google.maps.Marker({position:{lat:45.354, lng:20.111}, map, title:"Penny Lane Club Bečej"});
-  const marker2 = new google.maps.Marker({position:{lat:45.256, lng:19.848}, map, title:"District 8 Novi Sad"});
+  new google.maps.Marker({position:becej,map:map,title:"Penny Lane Club Bečej"});
+  new google.maps.Marker({position:noviSad,map:map,title:"District 8 Novi Sad"});
 }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
 
 </body>
 </html>
