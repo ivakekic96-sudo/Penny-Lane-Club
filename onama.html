@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Penny Lane Club</title>
+<title>Penny Lane Club - O nama</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -11,15 +11,14 @@ body{font-family:'Inter',sans-serif;background:#f6f1ea;color:#2a2a2a;scroll-beha
 header{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:flex-start;align-items:center;padding:20px 60px;background:white;box-shadow:0 5px 20px rgba(0,0,0,.05);}
 header img{height:50px;margin-right:30px;}
 nav a{margin-left:30px;text-decoration:none;color:#2a2a2a;font-size:14px;letter-spacing:1px;}
-.hero{position:relative;height:90vh;background:url('https://i.imgur.com/0HckBcg.jpeg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
-.hero h1{font-family:'Playfair Display',serif;font-size:64px;letter-spacing:3px;text-shadow:2px 2px 10px rgba(0,0,0,0.5);}
-.section{padding:120px 60px;max-width:1200px;margin:auto;}
-.section h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:40px;text-align:center;}
-.about p{font-size:20px;line-height:1.8;max-width:700px;margin:auto;text-align:center;}
-.map-container{margin-top:40px;height:400px;}
-.map-text{margin-top:20px;text-align:center;font-size:18px;line-height:2;}
-.map-text strong{display:block;font-weight:700;}
+.section{padding:120px 60px;max-width:1200px;margin:auto;text-align:center;}
+.section h2{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:40px;}
+.about p{font-size:20px;line-height:1.8;margin-bottom:20px;}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px;}
+.gallery img{width:100%;height:200px;object-fit:cover;border-radius:15px;transition:.3s;}
+.gallery img:hover{transform:scale(1.05);}
 footer{text-align:center;padding:40px;background:#eee;font-size:14px;}
+footer img{height:50px;margin-bottom:10px;}
 </style>
 </head>
 <body>
@@ -33,36 +32,29 @@ footer{text-align:center;padding:40px;background:#eee;font-size:14px;}
 </nav>
 </header>
 
-<section class="hero">
-  <h1>PENNY LANE CLUB</h1>
-</section>
-
-<section id="about" class="section about">
+<section class="section about">
 <h2>O nama</h2>
-<p>
-Penny Lane Club je mali svet za one koji uživaju u svakodnevnim ritualima.<br>
-U prvoj kafi dana. U šetnji bez plana.<br>
-U razgovorima koji se ne završavaju na vreme.<br>
-Ovo nije samo odeća. Ovo je deo tog ritma.
-</p>
-<p>
-Naši stalni gosti i obožavaoci Penny Lane Cluba inspirisali su nas da napravimo brend koji krasi svakodnevni stil modernih ljudi.
-</p>
+<p>Penny Lane Club je mali svet za one koji uživaju u svakodnevnim ritualima.</p>
+<p>U prvoj kafi dana.</p>
+<p>U šetnji bez plana.</p>
+<p>U razgovorima koji se ne završavaju na vreme.</p>
+<p>Ovo nije samo odeća.</p>
+<p>Ovo je deo tog ritma.</p>
+<p>Naši stalni gosti i obožavaoci Penny Lane Cluba inspirisali su nas da napravimo brend koji krasi svakodnevni stil modernih ljudi.</p>
 </section>
 
 <section class="section">
-<h2>Prodajna mesta</h2>
-<div class="map-container">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11382.060093537885!2d20.033231!3d45.622118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b7572fce0bfb3%3A0x45cb0d2e626fb5b2!2sPenny%20Lane%20Club%2C%20Be%C4%8Dej!5e0!3m2!1sen!2srs!4v1670000000000!5m2!1sen!2srs" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-</div>
-<div class="map-text">
-  <strong>Penny Lane Club</strong>Zelena 23, 21220 Bečej<br><br>
-  <strong>District 8</strong>Dunavska 7, 21000 Novi Sad
+<h2>Galerija enterijera</h2>
+<div class="gallery">
+  <img src="https://i.imgur.com/654mt4P.png" alt="Enterijer 1">
+  <img src="https://i.imgur.com/Z4Cgzmf.png" alt="Enterijer 2">
+  <img src="https://i.imgur.com/VIuqCaO.jpeg" alt="Enterijer 3">
+  <img src="https://i.imgur.com/L8LPSP3.jpeg" alt="Enterijer 4">
 </div>
 </section>
 
 <footer>
-<img src="https://i.imgur.com/iujexZy.png" alt="Logo" style="height:50px; margin-bottom:10px;"><br>
+<img src="https://i.imgur.com/iujexZy.png" alt="Logo"><br>
 © 1996 Penny Lane Club
 </footer>
 
