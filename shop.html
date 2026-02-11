@@ -4,192 +4,143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop - Penny Lane Club</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:#f6f1ea;
-color:#2a2a2a;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:25px 60px;
-background:white;
-}
-
-nav a{
-margin-left:30px;
-text-decoration:none;
-color:#2a2a2a;
-font-size:14px;
-}
-
-.section-title{
-font-family:'Playfair Display';
-font-size:34px;
-margin:70px 60px 20px;
-}
-
-.shop{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:40px;
-padding:0 60px 40px;
-}
-
-.product{
-background:white;
-border-radius:20px;
-padding:20px;
-transition:0.3s;
-}
-
-.product img{
-width:100%;
-height:340px;
-object-fit:cover;
-border-radius:15px;
-}
-
-.product h3{
-font-weight:500;
-margin:15px 0 5px;
-}
-
-.price{
-font-size:14px;
-margin-bottom:10px;
-}
-
-select{
-padding:8px;
-border-radius:8px;
-border:1px solid #ddd;
-margin-bottom:10px;
-}
-
-button{
-padding:10px 20px;
-background:#2a2a2a;
-color:white;
-border:none;
-border-radius:30px;
-cursor:pointer;
-}
-
-button:hover{
-background:#8b6f47;
-}
-
-.cart{
-position:fixed;
-right:40px;
-top:140px;
-width:300px;
-background:white;
-padding:25px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-font-size:14px;
-}
-
-.cart h2{
-font-weight:500;
-margin-bottom:15px;
-}
-
-.cart-item{
-margin-bottom:12px;
-}
-
-.remove{
-font-size:12px;
-color:#999;
-cursor:pointer;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#f6f1ea;color:#2a2a2a;scroll-behavior:smooth;}
+header{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:25px 60px;background:white;box-shadow:0 5px 20px rgba(0,0,0,.05);}
+header img{height:45px;}
+nav a{margin-left:30px;text-decoration:none;color:#2a2a2a;font-size:14px;letter-spacing:1px;}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;padding-top:120px;}
+.product{background:white;border-radius:20px;overflow:hidden;transition:.4s;}
+.product img{width:100%;height:500px;object-fit:cover;transition:.5s;}
+.product:hover img{transform:scale(1.05);}
+.product-info{padding:25px;}
+.product-info h3{margin-bottom:10px;font-size:20px;}
+.price{font-weight:600;margin-bottom:10px;}
+.selectors{display:flex;gap:10px;margin:10px 0;}
+select,input[type="number"]{padding:8px;border-radius:8px;border:1px solid #ddd;}
+button{padding:12px 20px;background:#1a1a1a;color:white;border:none;border-radius:30px;cursor:pointer;transition:.3s;}
+button:hover{background:#8b6f47;}
+.cart-btn{cursor:pointer;font-weight:500;}
+.cart-panel{position:fixed;top:0;right:-420px;width:420px;height:100%;background:white;box-shadow:-10px 0 30px rgba(0,0,0,.1);padding:40px;transition:.4s;z-index:2000;overflow:auto;}
+.cart-panel.active{right:0;}
+.cart-item{margin-bottom:15px;font-size:14px;}
+.remove{font-size:12px;color:#999;cursor:pointer;}
+footer{text-align:center;padding:40px;background:#eee;font-size:14px;}
 </style>
 </head>
-
 <body>
 
 <header>
-<img src="https://i.imgur.com/iujexZy.png" style="height:45px;">
+<img src="https://i.imgur.com/iujexZy.png" alt="Penny Lane Club">
 <nav>
-<a href="index.html">HOME</a>
-<a href="shop.html">SHOP</a>
-<a href="onama.html">O NAMA</a>
+  <a href="index.html">HOME</a>
+  <a href="#shop">SHOP</a>
+  <a href="onama.html">O NAMA</a>
+  <span class="cart-btn" onclick="toggleCart()">KORPA (<span id="cart-count">0</span>)</span>
 </nav>
 </header>
 
-<h2 class="section-title">Ženski modeli</h2>
+<section id="shop" class="shop-grid">
+<h2 style="grid-column:1/-1;text-align:center;">Ženski modeli</h2>
 
-<section class="shop">
+<!-- ŽENSKE MAJICE -->
+<div class="product">
+<img src="https://i.imgur.com/BChrORq.png" alt="Drama zenski">
+<div class="product-info">
+<h3>Drama zenski</h3>
+<div class="price">1.400 RSD</div>
+<div class="selectors">
+<select id="size1"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select>
+<input type="number" id="qty1" value="1" min="1">
+</div>
+<button onclick="addToCart('Drama zenski',1400,'size1','qty1')">Dodaj u korpu</button>
+</div>
+</div>
 
 <div class="product">
-<img src="https://i.imgur.com/BChrORq.png">
-<h3>BChrORq</h3>
+<img src="https://i.imgur.com/L8LPSP3.jpeg" alt="Limunada zenski">
+<div class="product-info">
+<h3>Limunada zenski</h3>
 <div class="price">1.400 RSD</div>
-<select id="size1">
-<option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-</select>
-<button onclick="addToCart('BChrORq','size1')">Dodaj</button>
+<div class="selectors">
+<select id="size2"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select>
+<input type="number" id="qty2" value="1" min="1">
+</div>
+<button onclick="addToCart('Limunada zenski',1400,'size2','qty2')">Dodaj u korpu</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://i.imgur.com/Grozda.jpeg" alt="Grozda zenski">
+<div class="product-info">
+<h3>Grozda zenski</h3>
+<div class="price">1.400 RSD</div>
+<div class="selectors">
+<select id="size3"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select>
+<input type="number" id="qty3" value="1" min="1">
+</div>
+<button onclick="addToCart('Grozda zenski',1400,'size3','qty3')">Dodaj u korpu</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://i.imgur.com/Espreso.jpeg" alt="Espreso zenski">
+<div class="product-info">
+<h3>Espreso zenski</h3>
+<div class="price">1.400 RSD</div>
+<div class="selectors">
+<select id="size4"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select>
+<input type="number" id="qty4" value="1" min="1">
+</div>
+<button onclick="addToCart('Espreso zenski',1400,'size4','qty4')">Dodaj u korpu</button>
+</div>
+</div>
+
+<h2 style="grid-column:1/-1;text-align:center;">Muški modeli</h2>
+
+<!-- MUŠKE MAJICE -->
+<div class="product">
+<img src="https://i.imgur.com/654mt4P.png" alt="Drama muski">
+<div class="product-info">
+<h3>Drama muski</h3>
+<div class="price">1.400 RSD</div>
+<div class="selectors">
+<select id="size5"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select>
+<input type="number" id="qty5" value="1" min="1">
+</div>
+<button onclick="addToCart('Drama muski',1400,'size5','qty5')">Dodaj u korpu</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://i.imgur.com/PKZxEag.jpeg" alt="Lutkica muski">
+<div class="product-info">
+<h3>Lutkica muski</h3>
+<div class="price">1.400 RSD</div>
+<div class="selectors">
+<select id="size6"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select>
+<input type="number" id="qty6" value="1" min="1">
+</div>
+<button onclick="addToCart('Lutkica muski',1400,'size6','qty6')">Dodaj u korpu</button>
+</div>
 </div>
 
 </section>
 
-<h2 class="section-title">Muški modeli</h2>
-
-<section class="shop">
-
-<div class="product">
-<img src="https://i.imgur.com/654mt4P.png">
-<h3>654mt4P</h3>
-<div class="price">1.400 RSD</div>
-<select id="size2">
-<option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-</select>
-<button onclick="addToCart('654mt4P','size2')">Dodaj</button>
-</div>
-
-</section>
-
-<div class="cart">
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart">
 <h2>Korpa</h2>
 <div id="cart-items"></div>
+<div class="total">Ukupno: <span id="total">0</span> RSD</div>
+<form class="checkout-form" action="https://formsubmit.co/ivakekci96@gmail.com" method="POST">
+<input type="text" name="ime" placeholder="Ime i prezime" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="text" name="adresa" placeholder="Adresa" required>
+<input type="hidden" name="_captcha" value="false">
+<button type="submit">Završi porudžbinu</button>
+</form>
 </div>
 
-<script>
-let cart=[];
-
-function addToCart(name,sizeId){
-let size=document.getElementById(sizeId).value;
-cart.push({name,size});
-renderCart();
-}
-
-function removeItem(index){
-cart.splice(index,1);
-renderCart();
-}
-
-function renderCart(){
-let container=document.getElementById("cart-items");
-container.innerHTML="";
-cart.forEach((item,index)=>{
-container.innerHTML+=`
-<div class="cart-item">
-${item.name} (${item.size})
-<div class="remove" onclick="removeItem(${index})">Ukloni</div>
-</div>`;
-});
-}
-</script>
-
-</body>
-</html>
+<footer>© 1996 Penny La
